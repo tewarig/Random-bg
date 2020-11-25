@@ -1,14 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React , {useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [randomColor, setRandomColor] = useState("rgb(0,0,0)");
+  const changeBackground = () => {
+   let color = "rgb("+
+   Math.floor(Math.random() * 256) + 
+   " , " +
+   Math.floor(Math.random() * 256)+
+   ","+ Math.floor(Math.random() * 256) +")";
+   setRandomColor(color);
+  };
   return (
     <>
     <View style={[styles.container,{backgroundColor: randomColor} ]}>
-      <Text style={styles.text}>Tap Me!</Text>
-      <StatusBar style="auto" />
+      <TouchableOpacity onPress={changeBackground}>
+  <Text style={styles.text}>{randomColor}</Text>
+      </TouchableOpacity>
     </View>
     </>
   );
